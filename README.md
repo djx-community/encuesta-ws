@@ -33,7 +33,7 @@ yarn run start # start production server
 
 ## How to Contribute 
 
-### How to Contribute Guide for outside collaborators
+### Guide for outside collaborators
 ---
 
 1. Check Repos issue tab for open issues
@@ -60,12 +60,12 @@ git push -u origin development
 
 7. Create a new pull request from your forked repository to base repos development branch ( Click the New Pull Request button located at the top of your repo ).
 
-8. Mention issue in comment section (#issue_no) 
+8. Mention issue in comment section (click reference icon in comment tab) 
 
 9. Wait for your PR to be reviewed and approved for merge ✨.
 
 
-### How to Contribute Guide for internal collaborator
+### Guide for internal collaborator
 ---
 
 1. Check Repos issue tab for open issues
@@ -97,6 +97,6 @@ git push -u origin 'branch_name'
 
 7. Create a new pull request to development branch ( Click the New Pull Request button located at the top of your repo ).
 
-8. Link issue to PR 
+8. Click Development section and Link issue to PR 
 
 9. Wait for your PR to be reviewed and approved for merge ✨.
