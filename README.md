@@ -3,7 +3,7 @@
 ## System Requirements
 
 ```
-Node v16.16.0
+node.js v16.16.0
 yarn 1.22.19
 mongodb Ver 5.5
 ```
@@ -36,7 +36,7 @@ yarn run start # start production server
 ### Guide for outside collaborators
 ---
 
-1. Check Repos issue tab for open issues
+1. Check issue tab for open issues
 
 2. Fork this repository ( Click the Fork button in the top right of this page ).
 
@@ -68,7 +68,7 @@ git push -u origin development
 ### Guide for internal collaborator
 ---
 
-1. Check Repos issue tab for open issues
+1. Check issue tab for open issues
 
 2. Request to assign issue
 
@@ -76,6 +76,12 @@ git push -u origin development
 
 ```
 git clone git@github.com:djx-community/encuesta-ws.git
+```
+
+or
+
+```
+git clone https://github.com/djx-community/encuesta-ws.git
 ```
 
 4. Checkout to personal branch
