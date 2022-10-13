@@ -26,7 +26,6 @@ yarn install
 yarn run dev # start development server
 
 yarn run start # start production server
-
 ```
 
 
@@ -45,7 +44,6 @@ yarn run start # start production server
 
 ```
 git clone repo_link
-
 ```
 
 4. Checkout to development branch 
@@ -58,7 +56,6 @@ git clone repo_link
 git add .
 git commit -m 'commit message'
 git push -u origin development
-
 ```
 
 7. Create a new pull request from your forked repository to base repos development branch ( Click the New Pull Request button located at the top of your repo ).
@@ -79,7 +76,6 @@ git push -u origin development
 
 ```
 git clone git@github.com:djx-community/encuesta-ws.git
-
 ```
 
 4. Checkout to personal branch
@@ -87,7 +83,6 @@ git clone git@github.com:djx-community/encuesta-ws.git
 ```
 git checkout development
 git checkout -b 'branch_name'
-
 ```
 
 5. Make required changes.
@@ -98,7 +93,6 @@ git checkout -b 'branch_name'
 git add .
 git commit -m 'commit message'
 git push -u origin 'branch_name'
-
 ```
 
 7. Create a new pull request to development branch ( Click the New Pull Request button located at the top of your repo ).
