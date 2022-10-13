@@ -1,0 +1,35 @@
+{
+  "name": "encuesta-ws",
+  "version": "0.0.0",
+  "description": "Quiz Game Server",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/djx-community/encuesta-ws.git"
+  },
+  "keywords": [
+    "socket.io",
+    "quiz",
+    "live-quiz",
+    "hacktoberfest"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/djx-community/encuesta-ws/issues"
+  },
+  "homepage": "https://github.com/djx-community/encuesta-ws#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "mongoose": "^6.6.5",
+    "socket.io": "^4.5.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
