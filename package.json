@@ -27,7 +27,8 @@
   "dependencies": {
     "dotenv": "^16.0.3",
     "mongoose": "^6.6.5",
-    "socket.io": "^4.5.2"
+    "socket.io": "^4.5.2",
+    "uniqid": "^5.4.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
