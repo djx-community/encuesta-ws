@@ -1,5 +1,5 @@
 const socketIo = require('socket.io')
-const dotenv = require('dotenv').config()
+require('dotenv').config()
 const http = require('http')
 
 const server = http.createServer()
@@ -7,14 +7,22 @@ const server = http.createServer()
 //interfaces
 const quickPlayInterface = require('./interface/quickPlayInterface')
 const hostInterface = require('./interface/hostInterface')
+const db = require('./config/connection')
 
 const io = new socketIo.Server(server, {
     cors: { origin: "*" }
 })
 
-const onConnection = (socket) => {
-    quickPlayInterface(io, socket)
-    hostInterface(io, socket)
-}
+db.connect(() => {
+    console.log("db connected successfully")
+})
 
-io.on('connection', onConnection)
+io.on('connection', (socket) => {
+    hostInterface(io, socket)
+    quickPlayInterface(io, socket)
+})
+
+
+server.listen('3000', () => {
+    console.log("Listening on port 3000");
+})

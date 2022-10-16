@@ -1,3 +1,5 @@
+const { createRoom } = require("../controller/hostController")
+
 module.exports = (io, socket) => {
-    console.log("hello");
+    socket.on("room:create", (payload) => createRoom(io, socket, payload))
 }
