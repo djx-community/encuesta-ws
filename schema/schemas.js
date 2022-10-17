@@ -1,4 +1,5 @@
 const { Schema } = require('mongoose')
+const { collections } = require('../config/constant')
 
 module.exports = {
     roomSchema: new Schema({
@@ -19,5 +20,24 @@ module.exports = {
             type: Number,
             required: true
         },
+    }),
+    roomQuestionSchema: new Schema({
+        roomId: {
+            type: Schema.Types.ObjectId,
+            ref: collections.Room,
+            required: true
+        },
+        question: {
+            type: String,
+            required: true,
+        },
+        correct_answer: {
+            type: String,
+            required: true,
+        },
+        incorrect_answers: {
+            type: [String],
+            required: true
+        }
     })
 }
