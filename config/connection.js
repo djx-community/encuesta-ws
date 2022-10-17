@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const { roomSchema } = require("../schema/schemas");
+const { collections } = require("./constant");
 
 module.exports = {
     connect: async (done) => {
@@ -11,7 +12,7 @@ module.exports = {
             console.log(err.message)
         }
     },
-    Room: mongoose.model('Room', roomSchema)
+    Room: mongoose.model(collections.Room, roomSchema)
 }
 
 

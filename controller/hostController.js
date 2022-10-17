@@ -3,7 +3,7 @@ const { createRoom } = require('../model/hostModel')
 const { generateString } = require('../utils/utils')
 
 module.exports = {
-    createRoom: async (io, socket, payload) => {
+    createRoom: async (payload) => {
         const room = {
             roomId: uuid.process(),
             password: generateString(7),
@@ -11,15 +11,9 @@ module.exports = {
             timeout: payload.data.timeout
         }
         try {
-            const createdRoom = await createRoom(room)
-            socket.emit('room', {
-                action: "create",
-                status: "success",
-                room: createdRoom
-            });
+            return await createRoom(room)
         } catch (err) {
             console.log(err);
         }
-
     }
 }
