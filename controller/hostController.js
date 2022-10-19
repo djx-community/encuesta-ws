@@ -1,7 +1,7 @@
 const uuid = require('uniqid')
 const { createRoom } = require('../model/hostModel')
 const { generateString } = require('../utils/utils')
-
+const { getDifficulty, getCategories } = require('../service/triviaDb')
 module.exports = {
     createRoom: async (payload) => {
         const room = {
@@ -11,7 +11,17 @@ module.exports = {
             timeout: payload.data.timeout
         }
         try {
-            return await createRoom(room)
+            const createdRoom = await createRoom(room)
+            const categories = await getCategories()
+            let difficulty = getDifficulty()
+            return {
+                room: createdRoom,
+                triviaParameters: {
+                    maxNumberOfQuestions: 50,
+                    categories,
+                    difficulty
+                }
+            }
         } catch (err) {
             console.log(err);
         }
