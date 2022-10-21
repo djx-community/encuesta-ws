@@ -1,5 +1,5 @@
 const { Player } = require("../config/connection")
 
 module.exports = {
-    // joinPlayer: (room) => Player.
+    joinPlayer:(player)=>Player.create(player)
 }
