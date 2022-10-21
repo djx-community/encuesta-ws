@@ -10,6 +10,7 @@ const server = http.createServer()
 //interfaces
 const quickPlayInterface = require('./interface/quickPlayInterface')
 const hostInterface = require('./interface/hostInterface')
+const playerInterface = require('./interface/playerInterface')
 
 const io = new socketIo.Server(server, {
     cors: { origin: "*" }
@@ -22,6 +23,7 @@ db.connect(() => {
 io.on('connection', (socket) => {
     hostInterface(io, socket)
     quickPlayInterface(io, socket)
+    playerInterface(io,socket)
 })
 
 

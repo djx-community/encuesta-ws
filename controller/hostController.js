@@ -1,5 +1,5 @@
 const uuid = require('uniqid')
-const { createRoom } = require('../model/hostModel')
+const { createRoom,findRoom } = require('../model/hostModel')
 const { generateString } = require('../utils/utils')
 const { getDifficulty, getCategories } = require('../service/triviaDb')
 module.exports = {
@@ -23,6 +23,14 @@ module.exports = {
                     difficulty
                 }
             }
+        } catch (err) {
+            console.log(err);
+        }
+    },
+    findRoomByRoomId:async (roomId) => {
+        try {
+            const room=await findRoom(roomId)
+            return room         
         } catch (err) {
             console.log(err);
         }
