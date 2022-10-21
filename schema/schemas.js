@@ -16,6 +16,10 @@ module.exports = {
             type: String,
             required: true
         },
+        joinPassword: {
+            type: String,
+            required: true
+        },
         timeout: {
             type: Number,
             required: true
@@ -39,5 +43,21 @@ module.exports = {
             type: [String],
             required: true
         }
+    }),
+    playerSchema: new Schema({
+        roomId: {
+            type: Schema.Types.ObjectId,
+            ref: collections.Room,
+            required: true
+        },
+        playerId: {
+            type: String,
+            required: true,
+            unique:true
+        },
+        name: {
+            type: String,
+            required: true,
+        },
     })
 }
