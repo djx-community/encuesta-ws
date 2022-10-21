@@ -5,8 +5,9 @@ const { getDifficulty, getCategories } = require('../service/triviaDb')
 module.exports = {
     createRoom: async (payload) => {
         const room = {
-            roomId: uuid.process(),
+            roomId: uuid.process().toUpperCase(),
             password: generateString(7),
+            joinPassword: generateString(7),
             name: payload.data.name,
             timeout: payload.data.timeout
         }
