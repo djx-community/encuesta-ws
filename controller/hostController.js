@@ -1,5 +1,5 @@
 const uuid = require('uniqid')
-const { createRoom,findRoom,findRoomByRoomIdAndPassword } = require('../model/hostModel')
+const { createRoom,findRoom,findRoomByRoomIdAndPassword, playerCountInRoom } = require('../model/hostModel')
 const { generateString } = require('../utils/utils')
 const { getDifficulty, getCategories } = require('../service/triviaDb')
 const { joinPlayer } = require('../model/playerModel')

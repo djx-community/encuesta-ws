@@ -1,4 +1,4 @@
-const { findRoomByRoomId, checkRoomIdAndPassword, joinPlayer } = require("../controller/hostController")
+const { findRoomByRoomId, checkRoomIdAndPassword, joinPlayer, playerCount } = require("../controller/hostController")
 
 module.exports = (io, socket) => {
     socket.on("player:join", async (payload) => {
@@ -19,15 +19,22 @@ module.exports = (io, socket) => {
                 });
             }
             else {
-                // const playerCount=await playerCount(payload.data.roomId)
-                console.log(room._id);
                 let roomId=room._id
-                const Player = await joinPlayer(payload,roomId)
-                socket.emit('Player', {
-                    action: "join",
-                    status: "success",
-                    ...Player
-                });
+                let vacancy=await playerCount(roomId)
+                if (vacancy>100) {
+                    socket.emit('Player', {
+                        action: "join",
+                        status: "failed",
+                        message: "room is full"
+                    });
+                }else{
+                    const Player = await joinPlayer(payload,roomId)
+                    socket.emit('Player', {
+                        action: "join",
+                        status: "success",
+                        ...Player
+                    });
+                }
             }
         }
     })
