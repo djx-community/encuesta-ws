@@ -1,5 +1,5 @@
 exports.collections = {
-    Room: 'Room',
+    Room: 'Rooms',
     RoomQuestions: 'RoomQuestions',
-    Player:'Player'
+    Player:'Players'
 }

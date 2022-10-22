@@ -53,11 +53,15 @@ module.exports = {
         playerId: {
             type: String,
             required: true,
-            unique:true
+            unique: true
         },
         name: {
             type: String,
             required: true,
         },
+        socketId: {
+            type: String,
+            required: true,
+        }
     })
 }
