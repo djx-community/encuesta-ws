@@ -7,7 +7,7 @@ module.exports = {
                 reject("A Maximum of 50 Questions can be retrieved per call.")
             }
             if (parameters.difficulty == 'easy' || parameters.difficulty == 'medium' || parameters.difficulty == 'hard') {
-                parameters.difficulty='&difficulty=easy'
+                parameters.difficulty='&difficulty='+parameters.difficulty
             }else{
                 parameters.difficulty=''
             }
