@@ -27,6 +27,33 @@ module.exports = {
             } catch (err) {
                 reject(err)
             }
+        },
+        
+        )
+    },
+    authRoom: async (roomId,password)=>{
+        const room = await getRoomById(roomId)
+        if(room.password === password) return true;
+        else return false;
+    },
+    addQuestionstoDb: (roomId,quizSet) => {
+        return new Promise(async (resolve,reject)=>{
+            const questionSet = await quizSet.map(question => {
+                return{
+                    roomId,
+                    question: question.question,
+                    correct_answer: question.correct_answer,
+                    incorrect_answer: question.incorrect_answers
+                }
+            })
+            try {
+                const questionsStatus = await addQuestions(questionSet)
+                resolve(questionsStatus)
+
+            } 
+            catch(e) {
+                reject(e)
+            }
         })
     },
     isRoomExist: async (condition) => {
