@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { roomSchema,playerSchema } = require("../schema/schemas");
+const { roomSchema,playerSchema, roomQuestionSchema } = require("../schema/schemas");
 const { collections } = require("./constant");
 
 module.exports = {
@@ -13,7 +13,8 @@ module.exports = {
         }
     },
     Room: mongoose.model(collections.Room, roomSchema),
-    Player:mongoose.model(collections.Player, playerSchema)
+    Player:mongoose.model(collections.Player, playerSchema),
+    RoomQuestions: mongoose.model(collections.RoomQuestions, roomQuestionSchema)
 }
 
 
