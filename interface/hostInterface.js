@@ -35,20 +35,20 @@ module.exports = (io, socket) => {
                 try{
                     await addQuestionsToDb(payload.room._id,quizSet)
                     socket.emit("room", {
-                        action:"room:start",
-                        status:"success"
-
+                        action:"room:set_question",
+                        status:"success",
                     })
                 }catch(e) {
                     socket.emit("room", {
-                        action: "room:start",
+                        action: "room:set_question",
                         status: "error",
-                        message: "Something went wrong"
+                        message: "Something went wrong",
+                        error:e
                     })
                 }
             }catch (e) {
                 socket.emit("room", {
-                    action: "room:start",
+                    action: "room:set_question",
                     status: "error",
                     message:e
                 })
