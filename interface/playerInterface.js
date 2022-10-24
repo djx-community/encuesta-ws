@@ -1,11 +1,10 @@
 const playerController = require('../controller/playerController')
-const roomController = require('../controller/roomController')
 
 module.exports = (io, socket) => {
     socket.on("player:join", async (payload) => {
         try {
-            const player = await playerController.joinPlayerToRoom({ ...payload.player, socketId: socket.id }, payload.room)
-            const room = await roomController.getRoom(payload.room.roomId)
+            const room = await playerController.authRoom(payload.room.roomId)
+            const player = await playerController.joinPlayerToRoom({ ...payload.player, socketId: socket.id }, room)
             socket.join(room._id)
             socket.join(room._id + "_player")
             if (room.hasOwnProperty("password"))
