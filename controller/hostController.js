@@ -1,53 +1,61 @@
 const uuid = require('uniqid')
-const { createRoom, getRoomById, addQuestions } = require('../model/hostModel')
-const { generateString } = require('../utils/utils')
-const { getDifficulty, getCategories } = require('../service/triviaDb')
+const roomModel = require('../model/roomModel')
+const utils = require('../utils/utils')
+const triviaDb = require('../service/triviaDb')
 module.exports = {
-    createRoom: async (payload) => {
-        const room = {
-            roomId: uuid.process().toUpperCase(),
-            password: generateString(7),
-            joinPassword: generateString(7),
-            name: payload.data.name,
-            timeout: payload.data.timeout
-        }
-        try {
-            const createdRoom = await createRoom(room)
-            const categories = await getCategories()
-            let difficulty = getDifficulty()
-            return {
-                room: createdRoom,
-                triviaParameters: {
-                    maxNumberOfQuestions: 50,
-                    categories,
-                    difficulty
-                }
+    createRoom: (payload) => {
+        return new Promise(async (resolve, reject) => {
+            const room = {
+                roomId: uuid.process().toUpperCase(),
+                password: utils.generateString(7),
+                joinPassword: utils.generateString(7),
+                name: payload.room.name,
+                timeout: payload.room.timeout
             }
-        } catch (err) {
-            console.log(err);
-        }
+            try {
+                const createdRoom = await roomModel.createRoom(room)
+                const categories = await triviaDb.getCategories()
+                let difficulty = triviaDb.getDifficulty()
+                resolve({
+                    room: createdRoom,
+                    triviaParameters: {
+                        maxNumberOfQuestions: 50,
+                        categories,
+                        difficulty
+                    }
+                })
+            } catch (err) {
+                reject(err)
+            }
+        },
+
+        )
     },
-    authRoom: async (roomId, password) => {
-        const room = await getRoomById(roomId)
-        if (room.password === password) return true;
-        else return false;
+    authRoom: (roomId, password) => {
+        return new Promise(async (resolve, reject) => {
+            const room = await roomModel.findRoomById(roomId)
+            if (!room) reject("Room not Found")
+            else if (room.password === password) resolve(room);
+            else reject('Unauthorized');
+        })
     },
     addQuestionsToDb: (roomId, quizSet) => {
         return new Promise(async (resolve, reject) => {
-            const questionSet = await quizSet.map(question => {
-                return {
-                    roomId,
-                    question: question.question,
-                    correct_answer: question.correct_answer,
-                    incorrect_answers: question.incorrect_answers
-                }
-            })
             try {
-                const questionsStatus = await addQuestions(questionSet)
+                const questionSet = await quizSet.map(question => {
+                    return {
+                        roomId,
+                        question: question.question,
+                        correct_answer: question.correct_answer,
+                        incorrect_answer: question.incorrect_answers
+                    }
+                })
+                const questionsStatus = await roomModel.addQuestions(questionSet)
                 resolve(questionsStatus)
-            } catch (e) {
+            }
+            catch (e) {
                 reject(e)
             }
         })
-    }
+    },
 }
