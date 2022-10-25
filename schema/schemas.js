@@ -41,7 +41,7 @@ module.exports = {
         },
         incorrect_answers: {
             type: [String],
-            required: true
+            required: true,
         }
     }),
     playerSchema: new Schema({

@@ -47,13 +47,25 @@ module.exports = {
                         roomId,
                         question: question.question,
                         correct_answer: question.correct_answer,
-                        incorrect_answer: question.incorrect_answers
+                        incorrect_answers: question.incorrect_answers
                     }
                 })
-                const questionsStatus = await roomModel.addQuestions(questionSet)
+                const questionsStatus = await roomModel.storeQuestions(questionSet)
                 resolve(questionsStatus)
             }
             catch (e) {
+                reject(e)
+            }
+        })
+    },
+    startMatch: (roomId, broadcastData) => {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const questions = await roomModel.fetchQuestions(roomId)
+                console.log(questions);
+                broadcastData(roomId, questions)
+            } catch (e) {
+                console.log(e);
                 reject(e)
             }
         })

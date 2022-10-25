@@ -20,6 +20,7 @@ module.exports = (io, socket) => {
             });
         }
     })
+
     socket.on("room:set_question", async (payload) => {
         try {
             const room = await hostController.authRoom(payload.room._id, payload.room.password)
@@ -40,4 +41,26 @@ module.exports = (io, socket) => {
             })
         }
     })
+
+    socket.on("room:start", async (payload) => {
+        try {
+            const room = await hostController.authRoom(payload.room._id, payload.room.password)
+            hostController.startMatch(room._id, broadcastData)
+        } catch (e) {
+            let msg = "Something went wrong";
+            if (typeof e === "string") msg = e
+            socket.emit("room", {
+                action: "room:start",
+                status: "error",
+                message: msg,
+                error: e
+            })
+        }
+    })
+
+    const broadcastData = (to, data) => {
+        io.to(to).emit("room", {
+            ...data
+        })
+    }
 }

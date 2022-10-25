@@ -3,7 +3,7 @@ const fetch = require("node-fetch");
 module.exports = {
     getQuestions: async (parameters) => {
         return new Promise((resolve, reject) => {
-            if (parameters.maxNumberOfQuestions === undefined || parameters.maxNumberOfQuestions > 50) {
+            if (parameters.numberOfQuestions === undefined || parameters.numberOfQuestions > 50) {
                 reject("A Maximum of 50 Questions can be retrieved per call.")
             } else {
 
@@ -17,7 +17,7 @@ module.exports = {
                 } else {
                     parameters.categories = '&category=' + parameters.categories
                 }
-                const url = `https://opentdb.com/api.php?amount=${parameters.maxNumberOfQuestions}${parameters.categories}${parameters.difficulty}&type=multiple`;
+                const url = `https://opentdb.com/api.php?amount=${parameters.numberOfQuestions}${parameters.categories}${parameters.difficulty}&type=multiple`;
                 fetch(url)
                     .then(res => res.json())
                     .then(results => {

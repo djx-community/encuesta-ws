@@ -6,5 +6,6 @@ module.exports = {
     playerCount: (condition) => Player.countDocuments(condition),
     findRoomById: (id) => Room.findById(id),
     findRoom: (condition) => Room.findOne(condition),
-    addQuestions: (questionSet) => RoomQuestions.insertMany(questionSet)
+    storeQuestions: (questionSet) => RoomQuestions.insertMany(questionSet),
+    fetchQuestions: (roomId) => RoomQuestions.find({ _id: roomId }, { roomId: 0 })
 }
